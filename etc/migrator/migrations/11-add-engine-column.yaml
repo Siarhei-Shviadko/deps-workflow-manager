@@ -1,0 +1,17 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Raman Salauyou
+    changes:
+    - addColumn:
+        tableName: workflow_configuration
+        columns:
+        - column:
+            name: engine
+            type: VARCHAR
+            constraints:
+              nullable: true
+
+    rollback:
+      - sql: ALTER TABLE workflow_configuration DROP COLUMN engine;
+

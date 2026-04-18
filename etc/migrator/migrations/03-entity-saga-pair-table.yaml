@@ -1,0 +1,39 @@
+databaseChangeLog:
+
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya1
+    changes:
+    - createTable:
+        tableName: entity_saga_pair
+        columns:
+        - column:
+            name: entity_id
+            type: VARCHAR
+            constraints:
+              primaryKey: true
+        - column:
+            name: saga_id
+            type: VARCHAR
+            constraints:
+              nullable: false
+    rollback:
+    - dropTable:
+        tableName: entity_saga_pair
+
+- changeSet:
+    id: 2
+    author: Palina Pashkouskaya1
+    changes:
+    - addForeignKeyConstraint:
+        baseTableName: entity_saga_pair
+        baseColumnNames: saga_id
+        constraintName: saga_id_fkey
+        onDelete: CASCADE
+        onUpdate: CASCADE
+        referencedTableName: saga
+        referencedColumnNames: saga_id
+    rollback:
+      - dropForeignKeyConstraint:
+          baseTableName: entity_saga_pair
+          constraintName: saga_id_fkey

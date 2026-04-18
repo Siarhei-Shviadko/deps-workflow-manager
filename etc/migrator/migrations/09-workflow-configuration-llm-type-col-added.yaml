@@ -1,0 +1,13 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Illia Makarov
+    changes:
+    - addColumn:
+        tableName: workflow_configuration
+        columns:
+        - column:
+            name: llm_type
+            type: VARCHAR
+            constraints:
+              nullable: true

@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - include:
+      file: ./migrations/01-initial-table.yaml
+  - include:
+      file: ./migrations/02-saga-table.yaml
+  - include:
+      file: ./migrations/03-entity-saga-pair-table.yaml
+  - include:
+      file: ./migrations/04-workflow-configuration-table.yaml
+  - include:
+      file: ./migrations/05-add-default-values-to-workflow-configuration.yaml
+  - include:
+      file: ./migrations/06-add-parsing-features-to-workflow-configuration.yaml
+  - include:
+      file: ./migrations/07-add-needs-output-exporting-column.yaml
+  - include:
+      file: ./migrations/08-document-processing-table.yaml
+  - include:
+      file: ./migrations/09-workflow-configuration-llm-type-col-added.yaml
+  - include:
+      file: ./migrations/10-add-needs-review-on-validation-failure-column.yaml
+  - include:
+      file: ./migrations/11-add-engine-column.yaml
+  - include:
+      file: ./migrations/12-add-needs-extraction-column.yaml

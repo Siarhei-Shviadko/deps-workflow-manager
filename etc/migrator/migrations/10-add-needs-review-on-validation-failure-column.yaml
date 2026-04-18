@@ -1,0 +1,16 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Illia Makarov
+    changes:
+    - addColumn:
+        tableName: workflow_configuration
+        columns:
+        - column:
+            name: needs_review_on_validation_failure
+            type: BOOL
+            defaultValueBoolean: false
+            constraints:
+              nullable: false
+    rollback:
+      - sql: ALTER TABLE workflow_configuration DROP COLUMN needs_review_on_validation_failure;

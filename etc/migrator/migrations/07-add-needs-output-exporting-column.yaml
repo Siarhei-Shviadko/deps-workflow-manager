@@ -1,0 +1,18 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Siarhei Shveadko
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: needs_output_exporting
+            type: BOOL
+            defaultValueBoolean: false
+            constraints:
+              nullable: false
+        tableName: workflow_configuration    
+    rollback:
+      - dropColumn:
+        columnName: needs_output_exporting
+        tableName: workflow_configuration

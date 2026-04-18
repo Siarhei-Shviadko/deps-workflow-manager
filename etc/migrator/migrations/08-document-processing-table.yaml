@@ -1,0 +1,42 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Siarhei Shveadko
+    changes:
+    - createTable:
+        tableName: document_processing_info
+        columns:
+        - column:
+            name: document_id
+            type: VARCHAR(100)
+            constraints:
+              primaryKey: true
+        - column:
+            name: tenant_id
+            type: VARCHAR(100)
+            constraints:
+              primaryKey: true
+        - column:
+            name: needs_unifier
+            type: BOOL
+            constraints:
+              nullable: false
+        - column:
+            name: needs_extraction
+            type: BOOL
+            constraints:
+              nullable: false
+        - column:
+            name: assign_to_me
+            type: BOOL
+            constraints:
+              nullable: false
+        - column:
+            name: parsing_features
+            type: JSONB
+            constraints:
+              nullable: true      
+
+    rollback:
+    - dropTable:
+        tableName: document_processing_info

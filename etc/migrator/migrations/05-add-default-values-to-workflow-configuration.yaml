@@ -1,0 +1,29 @@
+databaseChangeLog:
+
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya
+    changes:
+    - addDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_postprocessing
+        defaultValueBoolean: false
+    - addDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_validation
+        defaultValueBoolean: false
+    - addDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_user_verification
+        defaultValueBoolean: false
+
+    rollback:
+    - dropDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_postprocessing
+    - dropDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_validation
+    - dropDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_user_verification

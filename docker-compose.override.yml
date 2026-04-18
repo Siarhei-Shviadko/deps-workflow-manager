@@ -1,0 +1,70 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./etc/api/Dockerfile
+      target: develop
+      args:
+        REPOSITORY_URL: "${REPOSITORY_URL}"
+      cache_from:
+        - "workflow-manager-api-dev:latest"
+    env_file:
+      - ./etc/api/env/.dev.env
+    networks:
+      - deps-network
+    ports:
+      - 8007:8000
+    volumes:
+      - ./src/deps_workflow_manager:/app/deps_workflow_manager
+      - ./src/tests:/app/tests
+      - ./src/poetry.lock:/app/poetry.lock
+      - ./src/pyproject.toml:/app/pyproject.toml
+      - ./vendors:/vendors
+      - ./src/setup.cfg:/app/setup.cfg
+      - ./src/requirements.txt:/app/requirements.txt
+    environment:
+      WDB_SOCKET_SERVER: wdb
+      WDB_NO_BROWSER_AUTO_OPEN: "True"
+    stdin_open: true
+    tty: true
+
+  workflow-dispatcher:
+    container_name: workflow-dispatcher
+    build:
+      context: .
+      dockerfile: ./etc/api/Dockerfile
+      target: develop
+      args:
+        REPOSITORY_URL: "${REPOSITORY_URL}"
+      cache_from:
+        - "workflow-manager-api-dev:latest"
+    env_file:
+      - ./etc/api/env/.dev.env
+      - .env
+    networks:
+      - deps-network
+    volumes:
+      - ./src/deps_workflow_manager:/app/deps_workflow_manager
+      - ./src/poetry.lock:/app/poetry.lock
+      - ./src/pyproject.toml:/app/pyproject.toml
+      - ./vendors:/vendors
+    stdin_open: true
+    tty: true
+
+  migrator:
+    build:
+      context: .
+      dockerfile: ./etc/migrator/Dockerfile
+      args:
+        REPOSITORY_URL: "${REPOSITORY_URL}"
+      cache_from:
+        - "workflow-manager-migrator:latest"
+    env_file: ./etc/migrator/env/.dev.env
+    networks:
+      - deps-network
+    volumes:
+      - ./etc/migrator/migrations:/app/migrations
+
+networks:
+  deps-network:
+    external: true

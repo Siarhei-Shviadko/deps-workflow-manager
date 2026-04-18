@@ -1,0 +1,14 @@
+services:
+  api:
+    image: "workflow-manager-api-dev"
+    container_name: deps-workflow-manager-api
+    command: python -m deps_workflow_manager serve
+
+  workflow-dispatcher:
+    image: "workflow-manager-api-dev"
+    container_name: deps-workflow-manager-dispatcher
+    command: python -m deps_workflow_manager dispatch
+
+  migrator:
+    image: "workflow-manager-migrator"
+    container_name: deps-workflow-manger-migrator

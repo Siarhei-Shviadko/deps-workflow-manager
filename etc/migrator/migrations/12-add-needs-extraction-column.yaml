@@ -1,0 +1,29 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Siarhei Shveadko
+    changes:
+    - addColumn:
+        tableName: workflow_configuration
+        columns:
+        - column:
+            name: needs_extraction
+            type: BOOLEAN
+            defaultValueBoolean: true
+            constraints:
+              nullable: false
+
+    rollback:
+      - sql: ALTER TABLE workflow_configuration DROP COLUMN needs_extraction;
+
+
+- changeSet:
+    id: 2
+    author: Siarhei Shveadko
+    changes:
+    - addDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_user_verification
+        defaultValueBoolean: true
+    rollback:
+      - sql: ALTER TABLE workflow_configuration ALTER COLUMN needs_user_verification SET DEFAULT false;

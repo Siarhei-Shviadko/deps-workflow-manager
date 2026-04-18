@@ -1,0 +1,48 @@
+databaseChangeLog:
+
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya
+    changes:
+    - createTable:
+        tableName: workflow_configuration
+        columns:
+        - column:
+            name: tenant_id
+            type: VARCHAR
+            constraints:
+              primaryKey: true
+        - column:
+            name: document_type_id
+            type: VARCHAR
+            constraints:
+              primaryKey: true
+        - column:
+            name: extraction_type
+            type: VARCHAR
+            constraints:
+              nullable: true
+        - column:
+            name: image_transformations
+            type: JSONB
+            constraints:
+              nullable: true
+        - column:
+            name: needs_postprocessing
+            type: BOOL
+            constraints:
+              nullable: false
+        - column:
+            name: needs_validation
+            type: BOOL
+            constraints:
+              nullable: false
+        - column:
+            name: needs_user_verification
+            type: BOOL
+            constraints:
+              nullable: false
+
+    rollback:
+    - dropTable:
+        tableName: workflow_configuration

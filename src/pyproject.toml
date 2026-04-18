@@ -1,0 +1,92 @@
+[tool.poetry]
+name = "workflow-manager"
+version = "0.1.0"
+description = "Workflow manager service. This manager executes and maintains processing pipelines."
+authors = []
+
+[tool.poetry.dependencies]
+python = "~3.12"
+fastapi = "^0.120"
+pydantic = "^2.7.0"
+pydantic-settings = "^2.2.0"
+dependency-injector = "^4.48.0"
+uvicorn = "^0.18.3"
+click = "^8.1.3"
+psycopg2-binary = "^2.9.5"
+SQLAlchemy = "^2.0.41"
+
+deps-observability-instrumentation = { path = "../vendors/deps-observability-instrumentation", develop = true }
+deps-message-flow = { path = "../vendors/deps-message-flow/src", extras = ["deps-asb", "deps-kafka", "deps-rabbitmq", "deps-integrations"], develop = true }
+python-multipart = ">=0.0.18"
+amqp = "^5.1.1"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+bandit = "^1.7.5"
+flake8 = "^6.1.0"
+wemake-python-styleguide = "^0.18.0"
+isort = "^5.12.0"
+black = "^23.7.0"
+pytest = "^7.4.1"
+coverage = "^5.5"
+requests-mock = "~1.9.3"
+pytest-mock = "^3.6.0"
+pytest-factoryboy = "^2.1.0"
+faker-enum = "^0.0.2"
+types-requests = "^2.25.6"
+flake8-commas-x = "^3.0.0"
+
+# Debug utils
+wdb = "^3.3.0"
+ipdb = "^0.13.9"
+see = "^1.4.1"
+
+[tool.poetry.group.test.dependencies]
+httpx = "^0.27.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.extras]
+datasource = ["datasource"]
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 120
+target-version = ['py312']
+exclude = '''
+(
+
+    .venv
+    | vendors
+)
+'''
+
+[tool.pytest.ini_options]
+markers = [
+    "processing_steps",
+    "uploading_step",
+    "unification_step",
+    "classification_step",
+    "extraction_step",
+    "postprocessing_step",
+    "validation_step",
+    "image_preprocessing_step",
+    "workflow_config",
+    "version_creation_saga",
+    "saga_state",
+    "workflow_configuration",
+    "parsing_step",
+    "no_doc_type_processing",
+    "document_processing",
+    "document_import",
+    "state_machine",
+    "exporting_step",
+    "version_classification_step",
+    "container_type_doc",
+    "pipelines",
+]

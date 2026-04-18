@@ -1,0 +1,15 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Palina Pashkouskaya
+    changes:
+      addColumn:
+        columns:
+        - column:
+            name: parsing_features
+            type: JSONB
+        tableName: workflow_configuration
+    rollback:
+      - dropColumn:
+        columnName: parsing_features
+        tableName: workflow_configuration
