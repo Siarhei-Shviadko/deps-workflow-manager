@@ -59,6 +59,7 @@ def test_workflow_configuration_service__save_configuration_for__configuration_c
         image_transformations={"jdfg", "jfndkj"},
         extraction_type=ExtractionType.PLUGIN,
         llm_type="gpt-4",
+        engine="AZURE_FORM_RECOGNIZER",
     )
 
     workflow_configuration_service.save_configuration_for(document_types=[document_type_info])
@@ -72,9 +73,10 @@ def test_workflow_configuration_service__save_configuration_for__configuration_c
         extraction_type=document_type_info.extraction_type,
         llm_type=document_type_info.llm_type,
         needs_extraction=True,
+        engine=document_type_info.engine,
         needs_output_exporting=False,
         needs_review_on_validation_failure=False,
-        needs_user_verification=True,
+        needs_user_verification=False,
         needs_validation=False,
         needs_postprocessing=False,
         parsing_features={ParsingFeature.TEXT},
@@ -94,6 +96,7 @@ def test_workflow_configuration_service__save_configuration_for__configuration_u
         image_transformations={"jdfg", "jfndkj"},
         extraction_type=ExtractionType.PLUGIN,
         llm_type="gpt-4",
+        engine="AWS_TEXTRACT",
     )
     workflow_configuration_service.save_configuration_for(document_types=[document_type_info])
 
@@ -111,6 +114,7 @@ def test_workflow_configuration_service__save_configuration_for__configuration_u
         needs_user_verification=workflow_configuration.needs_user_verification,
         needs_output_exporting=workflow_configuration.needs_output_exporting,
         needs_review_on_validation_failure=workflow_configuration.needs_review_on_validation_failure,
+        engine=document_type_info.engine,
     )
 
 
@@ -125,6 +129,7 @@ def test_workflow_configuration_service__update_configuration__configuration_upd
     new_needs_validation = not workflow_configuration.needs_validation
     new_needs_output_exporting = not workflow_configuration.needs_output_exporting
     needs_review = next((el for el in list(NeedsReviewOption) if el != workflow_configuration.needs_review))
+    new_engine = "THE_MOST_AWESOME_ENGINE_EVER"
 
     workflow_configuration_service.update_configuration(
         document_type_id=workflow_configuration.document_type_id,
@@ -134,6 +139,7 @@ def test_workflow_configuration_service__update_configuration__configuration_upd
         needs_validation=new_needs_validation,
         needs_output_exporting=new_needs_output_exporting,
         needs_review=needs_review,
+        engine=new_engine,
     )
 
     assert workflow_configuration_repo.find(
@@ -151,7 +157,7 @@ def test_workflow_configuration_service__update_configuration__configuration_upd
         needs_user_verification=needs_review == NeedsReviewOption.ALWAYS_REVIEW,
         needs_output_exporting=new_needs_output_exporting,
         needs_review_on_validation_failure=needs_review == NeedsReviewOption.REVIEW_IF_VALIDATION_FAILURE,
-        engine=workflow_configuration.engine,
+        engine=new_engine,
     )
 
 

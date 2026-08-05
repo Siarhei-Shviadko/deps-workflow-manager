@@ -38,6 +38,7 @@ def update_workflow_configuration(
     return workflow_configuration.update_configuration(
         tenant_id=current_tenant,
         document_type_id=update_workflow_configuration_request.document_type_id,
+        engine=update_workflow_configuration_request.engine,
         parsing_features=update_workflow_configuration_request.parsing_features,
         needs_extraction=update_workflow_configuration_request.needs_extraction,
         needs_postprocessing=update_workflow_configuration_request.needs_postprocessing,

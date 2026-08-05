@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: 1
+    author: Siarhei Shveadko
+    changes:
+    - addDefaultValue:
+        tableName: workflow_configuration
+        columnName: needs_user_verification
+        defaultValueBoolean: false
+    rollback:
+      - sql: ALTER TABLE workflow_configuration ALTER COLUMN needs_user_verification SET DEFAULT true;
