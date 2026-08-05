@@ -17,3 +17,4 @@ class UpdateWorkflowConfigurationRequest(ConfiguredBaseSerializer):
     needs_validation: Optional[bool] = Field(default=None, alias="needsValidation")
     needs_review: Optional[NeedsReviewOption] = Field(default=None, alias="needsReview")
     needs_output_exporting: Optional[bool] = Field(default=None, alias="needsOutputExporting")
+    engine: Optional[str] = Field(default=None, alias="engine")

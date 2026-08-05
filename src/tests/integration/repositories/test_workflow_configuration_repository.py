@@ -64,7 +64,7 @@ def test_workflow_configuration_repository__save_for__configuration_created(
     assert created_workflow_configuration.needs_extraction
     assert not created_workflow_configuration.needs_validation
     assert not created_workflow_configuration.needs_postprocessing
-    assert created_workflow_configuration.needs_user_verification
+    assert not created_workflow_configuration.needs_user_verification
     assert not created_workflow_configuration.needs_output_exporting
     assert created_workflow_configuration.llm_type == document_type_info.llm_type
     assert created_workflow_configuration.engine == document_type_info.engine

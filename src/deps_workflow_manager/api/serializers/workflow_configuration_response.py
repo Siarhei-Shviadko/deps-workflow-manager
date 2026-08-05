@@ -18,6 +18,7 @@ class WorkflowConfigurationResponse(ConfiguredBaseSerializer):
     needs_validation: bool = Field(..., alias="needsValidation")
     needs_review: NeedsReviewOption = Field(..., alias="needsReview")
     needs_output_exporting: bool = Field(..., alias="needsOutputExporting")
+    engine: str | None = Field(..., alias="engine")
 
     @classmethod
     def from_domain(cls, configuration: WorkflowConfiguration) -> "WorkflowConfigurationResponse":
@@ -28,4 +29,5 @@ class WorkflowConfigurationResponse(ConfiguredBaseSerializer):
             needs_validation=configuration.needs_validation,
             needs_review=configuration.needs_review,
             needs_output_exporting=configuration.needs_output_exporting,
+            engine=configuration.engine,
         )

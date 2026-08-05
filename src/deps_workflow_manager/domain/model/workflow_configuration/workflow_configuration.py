@@ -18,7 +18,7 @@ class WorkflowConfiguration:  # noqa: WPS230
         needs_extraction: bool = True,
         needs_postprocessing: bool = False,
         needs_validation: bool = False,
-        needs_user_verification: bool = True,
+        needs_user_verification: bool = False,
         needs_output_exporting: bool = False,
         needs_review_on_validation_failure: bool = False,
         engine: str | None = None,

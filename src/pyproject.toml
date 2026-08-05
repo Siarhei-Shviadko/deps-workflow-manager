@@ -17,7 +17,7 @@ SQLAlchemy = "^2.0.41"
 
 deps-observability-instrumentation = { path = "../vendors/deps-observability-instrumentation", develop = true }
 deps-message-flow = { path = "../vendors/deps-message-flow/src", extras = ["deps-asb", "deps-kafka", "deps-rabbitmq", "deps-integrations"], develop = true }
-python-multipart = ">=0.0.18"
+python-multipart = ">=0.0.22"
 amqp = "^5.1.1"
 
 
@@ -36,6 +36,7 @@ pytest-factoryboy = "^2.1.0"
 faker-enum = "^0.0.2"
 types-requests = "^2.25.6"
 flake8-commas-x = "^3.0.0"
+
 
 # Debug utils
 wdb = "^3.3.0"

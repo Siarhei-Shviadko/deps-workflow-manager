@@ -23,3 +23,5 @@ databaseChangeLog:
       file: ./migrations/11-add-engine-column.yaml
   - include:
       file: ./migrations/12-add-needs-extraction-column.yaml
+  - include:
+      file: ./migrations/13-change-default-value-for-needs-user-review.yaml
